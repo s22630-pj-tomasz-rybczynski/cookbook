@@ -27,7 +27,8 @@ def get_db():
                         (id INTEGER PRIMARY KEY AUTOINCREMENT,
                         title TEXT NOT NULL,
                         ingredients TEXT NOT NULL,
-                        instructions TEXT NOT NULL)''')
+                        instructions TEXT NOT NULL,
+                        image_address TEXT NOT NULL)''')
         db.execute('''CREATE TABLE IF NOT EXISTS users
                         (id INTEGER PRIMARY KEY AUTOINCREMENT,
                         email VARCHAR(255) NOT NULL,
@@ -88,10 +89,11 @@ def add_recipe():
         title = request.form['title']
         ingredients = request.form['ingredients']
         instructions = request.form['instructions']
+        image_address = request.form['image_address']
 
         db = get_db()
-        db.execute('INSERT INTO recipes (title, ingredients, instructions) VALUES (?, ?, ?)',
-                   (title, ingredients, instructions))
+        db.execute('INSERT INTO recipes (title, ingredients, instructions, image_address) VALUES (?, ?, ?, ?)',
+                   (title, ingredients, instructions, image_address))
         db.commit()
 
         return redirect('/')
