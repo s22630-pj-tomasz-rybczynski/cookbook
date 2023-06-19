@@ -5,7 +5,7 @@ class Recipe:
     def __init__(self, id, title, ingredients, instructions):
         self.id = id
         self.title = title
-        self.ingredients = ingredients
+        self.ingredients = ingredients.split(",")
         self.instructions = instructions
 
 

@@ -141,7 +141,7 @@ def login():
         is_valid = bcrypt.check_password_hash(user[2], password)
 
         if user is None or not is_valid:
-            flash('Invalid email or password.', 'danger')
+            flash('Invalid email or password.', 'error')
             return redirect(url_for('login'))
         
 
@@ -159,6 +159,12 @@ def logout():
     logout_user()
     flash('You have been logged out', 'info')
     return redirect('/login')
+
+
+@login_manager.unauthorized_handler
+def unauthorized():
+    return render_template('unauthorized.html')
+
 
 
 if __name__ == '__main__':
