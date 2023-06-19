@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block title %}Cookbook - main page{% endblock %}
+{% block content %}
+    <div class="container mt-5">
+        <h1>Cookbook</h1>
+        <hr>
+        <h3>Recipes</h3>
+        <ul>
+            {% for recipe in recipes %}
+            <li>
+                <a href="{{ url_for('recipe', recipe_id=recipe.id) }}">{{ recipe.title }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+        <hr>
+        <a href="{{ url_for('add_recipe') }}" class="btn btn-primary">Add Recipe</a>
+    </div>
+{% endblock %}
