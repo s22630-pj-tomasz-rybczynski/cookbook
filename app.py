@@ -155,6 +155,32 @@ def login():
     return render_template('login.html')
 
 
+@app.route('/recipe/edit/<int:recipe_id>', methods=['GET', 'POST'])
+@login_required
+def edit_recipe(recipe_id):
+    db = get_db()
+    cursor = db.execute('SELECT * FROM recipes WHERE id = ?', (recipe_id,))
+    recipe_data = cursor.fetchone()
+
+    if not recipe_data:
+        return 'Recipe not found'
+
+    if request.method == 'POST':
+        title = request.form['title']
+        ingredients = request.form['ingredients']
+        instructions = request.form['instructions']
+
+        db.execute('UPDATE recipes SET title = ?, ingredients = ?, instructions = ? WHERE id = ?',
+                   (title, ingredients, instructions, recipe_id))
+        db.commit()
+
+        flash('Recipe updated successfully')
+        return redirect(url_for('recipe', recipe_id=recipe_id))
+
+    recipe = Recipe(*recipe_data)
+    return render_template('edit_recipe.html', recipe=recipe)
+
+
 @app.route('/logout')
 @login_required
 def logout():

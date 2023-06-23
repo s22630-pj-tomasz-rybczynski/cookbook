@@ -18,6 +18,9 @@
         </ul>
         <h5>Instructions:</h5>
         <p>{{ recipe.instructions }}</p>
+        
+        <a href="{{ url_for('edit_recipe', recipe_id=recipe.id) }}" class="btn btn-primary">Edit Recipe</a>
+        
         {% else %}
         <p>Recipe not found</p>
         {% endif %}

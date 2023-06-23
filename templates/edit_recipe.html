@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% block title %}Edit Recipe{% endblock %}
+{% block content %}
+    <div class="container mt-5">
+        <h1>Edit Recipe</h1>
+        <hr>
+        <form method="POST">
+            <div class="mb-3">
+                <label for="title" class="form-label">Title:</label>
+                <input type="text" class="form-control" id="title" name="title" value="{{ recipe.title }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="ingredients" class="form-label">Ingredients:</label>
+                <textarea class="form-control" id="ingredients" name="ingredients" rows="4" required>{{ ', '.join(recipe.ingredients) }}</textarea>
+            </div>
+            <div class="mb-3">
+                <label for="instructions" class="form-label">Instructions:</label>
+                <textarea class="form-control" id="instructions" name="instructions" rows="6" required>{{ recipe.instructions }}</textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Update Recipe</button>
+        </form>
+        <hr>
+        <a href="{{ url_for('recipe', recipe_id=recipe.id) }}" class="btn btn-secondary">Cancel</a>
+    </div>
+{% endblock %}
