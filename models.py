@@ -2,12 +2,13 @@ from flask_login import UserMixin
 import json
 
 class Recipe:
-    def __init__(self, id, title, ingredients, instructions, image_address):
+    def __init__(self, id, title, ingredients, instructions, image_address, user_id):
         self.id = id
         self.title = title
         self.ingredients = ingredients.split(",")
         self.instructions = instructions
         self.image_address = image_address
+        self.user_id = user_id
 
 
     def to_json(self):

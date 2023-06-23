@@ -35,6 +35,8 @@
                     <label for="password" class="form-label">Password:</label>
                     <input type="password" id="password" name="password" class="form-control" required>
                 </div>
+                <p>Forgot your password? <a href="{{ url_for('forgot_password') }}">Reset it here</a></p>
+
                 <button type="submit" class="btn btn-primary">Login</button>
             </form>
         </div>

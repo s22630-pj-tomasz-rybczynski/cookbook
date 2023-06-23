@@ -21,6 +21,11 @@
         
         <a href="{{ url_for('edit_recipe', recipe_id=recipe.id) }}" class="btn btn-primary">Edit Recipe</a>
         
+        <form action="{{ url_for('delete_recipe', recipe_id=recipe.id) }}" method="post" class="d-inline">
+            <input type="hidden" name="_method" value="DELETE">
+            <button type="submit" class="btn btn-danger">Delete Recipe</button>
+        </form>
+        
         {% else %}
         <p>Recipe not found</p>
         {% endif %}
