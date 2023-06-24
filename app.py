@@ -281,7 +281,7 @@ def forgot_password():
         user = get_user(email)
 
         if user:
-            send_reset_password_email(email, f'http://localhost:5000/reset_password/{user.id}')
+            send_reset_password_email(email, f'http://127.0.0.1:5000/reset_password/{user.id}')
 
             return render_template('reset_successful.html')
         else:
